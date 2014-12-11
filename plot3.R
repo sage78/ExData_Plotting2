@@ -26,7 +26,8 @@ yearsums <- aggregate(NEI$Emissions,
 			    by=list(year=NEI$year,type=NEI$type), 
 			    FUN=sum)
 
-# plot emissions over years, add a smooth linear model for visualizing trend
+# plot emissions over years, add a smooth linear model for visualizing trend.
+# limit y axit between 0 and 3000 
 myplot <- qplot(year, 
       x, 
       data=yearsums, 
@@ -35,7 +36,7 @@ myplot <- qplot(year,
       method="lm", 
       main="Total PM2.5 emissions in the Baltimore City, by type", 
       xlab="Year", 
-      ylab="PM2.5 emission (tons)")
+      ylab="PM2.5 emission (tons)") + coord_cartesian(ylim = c(0, 3000))
 
 # save to plot3.png
-ggsave("plot3.png", myplot)
+ggsave("plot3.png", myplot, width=8, dpi=100)

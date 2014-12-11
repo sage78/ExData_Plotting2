@@ -26,6 +26,7 @@ emissiondata <- subset(emissiondata , SCC %in% sccs)
 sumdata <- aggregate(Emissions ~ year, emissiondata, sum)
 
 # plot emissions over years, add linear model for visualizing trend
+# limit y axis between 0 and 600
 myplot <- qplot(year,
       Emissions,
       data=sumdata,
@@ -33,7 +34,7 @@ myplot <- qplot(year,
       method="lm",
       main="Total PM2.5 emissions in Baltimore City from motor vehicle sources",
       xlab="Year",
-      ylab="PM2.5 emission (tons)")
+      ylab="PM2.5 emission (tons)") + coord_cartesian(ylim = c(0, 600))
 
 # save to plot5.png
-ggsave("plot5.png", myplot)
+ggsave("plot5.png", myplot, width=8, dpi=100)

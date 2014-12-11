@@ -33,4 +33,4 @@ myplot <- qplot(year,
       ylab="PM2.5 emission (tons)")
 
 # save to plot4.png
-ggsave("plot4.png", myplot)
+ggsave("plot4.png", myplot, width=8, dpi=100)

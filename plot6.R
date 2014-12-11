@@ -40,6 +40,7 @@ yearsums <- aggregate(emissiondata$Emissions,
 			    FUN=sum)
 
 # plot emissions over years by county, add linear model for visualizing trend
+# limit y-axis between 0 and 6000
 myplot <- qplot(year, 
       x, 
       data=yearsums, 
@@ -48,7 +49,7 @@ myplot <- qplot(year,
       method="lm", 
       main="Total PM2.5 emissions from motor vehicle sources", 
       xlab="Year", 
-      ylab="PM2.5 emission (tons)")
+      ylab="PM2.5 emission (tons)") + coord_cartesian(ylim = c(0, 6000))
 
 # save to plot6.png
-ggsave("plot6.png", myplot)
+ggsave("plot6.png", myplot, width=8, dpi=100)
